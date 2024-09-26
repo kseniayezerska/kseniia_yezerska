@@ -12,3 +12,4 @@ null=="" = false
 3**(9/3); = 27
 !!'false'==!!'true' = true
 0||'0'&&1 = 1
+false&&true||true = true
