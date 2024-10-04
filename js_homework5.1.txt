@@ -1,0 +1,25 @@
+let obj = {
+
+  name: "Cat Mary",
+
+  breed: "british",
+
+  age: 8,
+
+  getInfo: function() {
+
+    return `Name: ${this.name}, Age: ${this.age}, Breed: ${this.breed}`;
+
+  }
+
+ };
+
+ console.log(obj.getInfo());
+
+ obj.newProperty = "female";
+
+ obj.getInfo = function() {
+
+  return `Name: ${this.name}, Age: ${this.age}, New Property: ${this.newProperty}`;
+
+ };
