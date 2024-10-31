@@ -1,29 +1,65 @@
-
-function checkProbabilityTheory(count) {
-    let evenCount = 0; 
-    let oddCount = 0; 
-    function getRandomNumber() {
-        return Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
-    }
-    for (let i = 0; i < count; i++) {
-        let randomNumber = getRandomNumber();
-        if (randomNumber % 2 === 0) {
-            evenCount++;
-        } else {
-            oddCount++;
+const company = {
+  name: 'Велика Компанія',
+  type:'Головна компанія',
+  platform: 'Платформа для продажу квитків',
+  sellsSolution: 'Рішення для продажу квитків',
+  clients: [
+    {
+      name: 'Клієнт 1',
+      type: 'subCompany',
+      uses: 'ПО для продажу квитків',
+      sells: 'Рішення для продажу квитків',
+      partners: [
+        {
+          name: 'Клієнт 1.1',
+          type: 'subSubCompany',
+          uses: 'Рішення для продажу квитків',
+          sells: 'Рішення для продажу квитків',
+        },
+        {
+          name: 'Клієнт 1.2',
+          type: 'subSubCompany',
+          uses: 'Рішення для продажу квитків',
+          sells: 'Рішення для продажу квитків',
+          partners: [
+            {
+              name: 'Клієнт 1.2.3',
+              type: 'subSubCompany',
+              uses: 'Рішення для продажу квитків',
+              sells: 'Рішення для продажу квитків',
+            }
+          ]
         }
+      ]
+    },
+    {
+      name: 'Клієнт 2',
+      type: 'subCompany',
+      uses: 'ПО для продажу квитків',
+      sells: 'Рішення для продажу квитків'
     }
-    let evenPercentage = (evenCount / count) * 100;
-    let oddPercentage = (oddCount / count) * 100;
-    console.log(`Згенеровано ${count} чисел.`);
-    console.log(`Парних: ${evenCount} (${evenPercentage.toFixed(2)}%)`);
-    console.log(`Непарних: ${oddCount} (${oddPercentage.toFixed(2)}%)`);
-    console.log(evenPercentage.toFixed(2) === oddPercentage.toFixed(2)
-        ? "Результат точно 50/50!"
-        : "Результат близький до 50/50, але з деякими відхиленнями.");
+  ]
+ };
+ function findValueByKey(companyObj, companyName) {
+  if (companyObj.name === companyName) {
+    return companyObj;
+  }
+  if (companyObj.clients) {
+    for (const client of companyObj.clients) {
+      const result = findValueByKey(client, companyName);
+      if (result) return result;
+    }
+  }
+  if (companyObj.partners) {
+    for (const partner of companyObj.partners) {
+      const result = findValueByKey(partner, companyName);
+      if (result) return result;
+    }
+  }
+  return null;
  }
- checkProbabilityTheory(1000);
-
+ const result = findValueByKey(company, 'Клієнт 1.2.3');
+ console.log(result);
 
 
 
