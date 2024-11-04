@@ -1,8 +1,15 @@
-const text = "Wonderful Joyful Happiness Time Task Apple";
-const regex = /\b[^aA\s]{6,}\b/g;
-const matches = text.match(regex);
-console.log(matches);
-
+const arr = [
+    { userName: "Test", lastName: "Test", email: "test.test@gmail.com" },
+    { userName: "Dmitro", lastName: "Porohov", email: "dmitro.porohov@yahoo.com" },
+    { userName: "Andrii", lastName: "", email: "andrii@mail.ru" }, 
+ ];
+ 
+ const trustedEmailPattern = /^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)?@(gmail\.com|yahoo\.com)$/;
+ 
+ const trustedEmails = arr
+    .map(item => item.email) 
+    .filter(email => trustedEmailPattern.test(email)); 
+ console.log(trustedEmails);
 
 
 
